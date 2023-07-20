@@ -12,10 +12,16 @@ export async function GET(req: Request) {
         filter: "audioonly",
         quality: "highestaudio",
     });
-    return new Response(stream, {
+
+    //TODO: save response to `caches` to be able to send it to tg
+    const response = new Response(stream, {
         headers: {
             "x-total": stream.total.toString(),
-            "x-name": encodeURIComponent(`${stream.info.videoDetails.title}.webm`)
+            "x-name": encodeURIComponent(
+                `${stream.info.videoDetails.title}.webm`
+            ),
         },
     });
+
+    return response;
 }

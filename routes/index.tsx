@@ -16,6 +16,7 @@ export default function Index() {
     const [finalUrl, setFinalUrl] = useState("");
     async function start(link: string) {
         setLoading(true);
+        setProgress(0)
         setFinalUrl("");
         const url = new URL(`/~/dl`, location.href);
         url.searchParams.set("link", link);
